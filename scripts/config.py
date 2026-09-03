@@ -19,7 +19,7 @@ API_KEY = os.getenv('OPENWEATHER_API_KEY')
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 
 CITIES = ["Johannesburg", "East London", "Mossel Bay", 
-        "George", "Cape Town", "Pretoria", "Durban"]
+        "George", "Cape Town", "Pretoria", "Durban", "Tel Aviv", "London"]
 
 # Database setup:
 DB_PATH = "weather_data.db"
@@ -29,4 +29,3 @@ DB_PATH = "weather_data.db"
 
 if not API_KEY:
     raise ValueError("Please add generated API key for Weather in .env file")
-
