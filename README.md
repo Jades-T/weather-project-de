@@ -13,4 +13,6 @@ This project implements a complete ETL (Extract, Transform, Load) pipeline that:
 
     Analyzes stored data with basic statistics and visualizations
 
+- OpenWeatherMap API → Python Script → SQLite Database → Simple Analysis/Visualization
+
 *Work in progress* will update as I go along.
