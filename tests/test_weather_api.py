@@ -5,21 +5,15 @@ sys.path.append('.')
 from extract import extract_weather_for_city
 
 
-
+# each test case has a layout of AAA (Act Assert Arrange):
 class TestWeatherAPI(unittest.TestCase):
-    # Test 1: Does the API parse correctly?
-    
-    # fakes the real call for requests.get 
-    @patch('extract.request.get')
+    # Test 1: Does the API parse a good response correcyly?
+    @patch('extract.request.get')       # this fakes the requests.get
     def test_fetch_api_success(self, mock_get):
 
-        # Arrange : create fake API response
-        fake_response = Mock()
-        fake_response.json.return_value = {"humidity": 70}, "weather":[{"main": "Clear"}]
-            "name": "Cape Town", "main": {"temp": 25.5, ""}
 
 
 
-        }
-        # Act
-        # Assert
+
+    # Test 2: What if API fails?
+    # Test 3: Integration of API, how it work within the system.
