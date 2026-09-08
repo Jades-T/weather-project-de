@@ -41,19 +41,36 @@ def validate_config(config: dict) -> bool:
     Raises: Should give a ValueError if the config is invalid and does nort exist.
     """
 
-    if not config.get('weather_api_key'):
-        raise ValueError("WEATHER_API_KEY is required to proceed.")
-    if not config.get('weather_api_url'):
-        raise ValueError("WEATHER_API_URL is missing. Add to configuration file.")
-    if not config.get('update_interval', 0) <=0:
+    if not config.get('weather_api_key') and not config.get('weather_api_url'):
+        raise ValueError("WEATHER_API_KEY and WEATHER_API_URL is required to proceed.")
+    
+    
+    if not config.get('update_interval', 0)<=0:
         raise ValueError("UPDATE_INTERNAL must be in minutes and must be positive.")
+    
     if not config.get('max_entries', 0) < 0:
         raise ValueError("MAX ENTRIES cannot be negative.")
+    
     if not config.get('retry_delay'):
         raise ValueError("RETRY_DELAY must be in seconds and must be positive.")
 
     # See if you should add the log_levels information.
     # Is the log level data needed?
+    return True
 
 def get_config() -> dict:
-    pass
+    """
+    This function combines the loading and validation of the configuration settings for the project.    
+    
+    Returns: Indicates if the validation of the configuration file is correctly setup.
+    Raises: A value error is raised if the configuration validation failed.
+    """
+
+    # load the configuration from the environment variables.
+    config = load_config()
+
+    #  Validate the configuration, ensures it works. Should raise value error if something is wrong.
+    validate_config(config)
+
+    # returns the validate configuration.
+    return config
