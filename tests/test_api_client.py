@@ -24,7 +24,8 @@ def get_mock_response_data():
     }
 def test_get_parse_weather_response():
     """
-    Test if the sample API response is correct
+    - Test if the sample API response is correct.
+    - Gets the extracted and cleaned API data sample
     """
     mock_data = get_mock_response_data()
     result = get_mock_response_data(mock_data, "Cape Town")
@@ -39,3 +40,26 @@ def test_get_parse_weather_response():
     assert result.description == "partly sunny"
     assert result.location == "Cape Town"
     assert isinstance(result.timestamp, float)
+
+def test_get_parse_weather_response_missing_data():
+    """
+    - Test extracting and cleaning when data is missing
+    """
+    missing_data = {
+        'main': {
+            'temp': 15,
+            'feels_like': 10.5,
+        },
+        'weather': [{
+            'description': 'Ah this is too cold!'
+        }],
+        'wind': {
+            'speed': 10.5
+        }
+    }
+
+    result = parse_weather_response(missing_data, "George")
+    assert result.temperature == 15
+    assert result.humidity is None
+
+    
