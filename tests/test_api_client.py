@@ -4,9 +4,9 @@ from src.api_client import *
 
 def get_mock_response_data():
     """
-    - Create sample API response data for testing:
-    - This function returns the API sample response data in a dictionary.
-    - Return: dict
+    Create sample API response data for testing:
+    This function returns the API sample response data in a dictionary.
+    Return: dict
     """
     return {
         'main': {
@@ -24,8 +24,8 @@ def get_mock_response_data():
     }
 def test_get_parse_weather_response():
     """
-    - Test if the sample API response is correct.
-    - Gets the extracted and cleaned API data sample
+    Test if the sample API response is correct.
+    Gets the extracted and cleaned API data sample
     """
     mock_data = get_mock_response_data()
     result = get_mock_response_data(mock_data, "Cape Town")
@@ -43,7 +43,7 @@ def test_get_parse_weather_response():
 
 def test_get_parse_weather_response_missing_data():
     """
-    - Test extracting and cleaning when data is missing
+    Test extracting and cleaning when data is missing
     """
     missing_data = {
         'main': {
@@ -62,4 +62,10 @@ def test_get_parse_weather_response_missing_data():
     assert result.temperature == 15
     assert result.humidity is None
 
-    
+@patch('src.api_client.rerequests.get')
+def test_get_weather_good_response(mock_get):
+    """
+    This function tests for the successful extraction of the weather data
+    """
+    # Mock the response data:
+    mock_response = Mock()
